@@ -352,10 +352,17 @@
             </main>
             <footer>
                 <h2>Je vous recontacte</h2>
-                <form action="#">
+                <form name="contact" method="POST" data-netlify="true">
                     <label for="email"><i class="fas fa-envelope"></i></label>
-                    <input id="email" type="text" placeholder="Votre email" />
-                    <button><i class="fas fa-paper-plane"></i></button>
+                    <input
+                        id="email"
+                        type="text"
+                        name="email"
+                        placeholder="Votre email"
+                    />
+                    <button type="submit">
+                        <i class="fas fa-paper-plane"></i>
+                    </button>
                 </form>
             </footer>
         </div>
