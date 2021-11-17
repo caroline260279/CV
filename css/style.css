@@ -243,7 +243,12 @@ aside {
   -ms-grid-column: 1;
   grid-area: aside;
   background: var(--lighter10);
-  padding-left: 3rem;
+}
+
+@media (max-width: 480px) {
+  aside {
+    padding-left: 3rem;
+  }
 }
 
 aside p {

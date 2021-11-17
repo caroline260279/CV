@@ -144,7 +144,10 @@ header {
 aside {
     grid-area: aside;
     background: var(--lighter10);
-    padding-left: 3rem;
+    @include xs {
+        padding-left: 3rem;
+    }
+
     p {
         margin: 0;
     }
