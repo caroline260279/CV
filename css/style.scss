@@ -173,6 +173,7 @@ aside {
         }
     }
     .profil {
+        display: block;
         @include xs {
             display: none;
         }

@@ -289,6 +289,7 @@ aside ul li a:hover i {
 }
 
 aside .profil {
+  display: block;
   background: -webkit-gradient(linear, left top, left bottom, from(var(--lighter10)), to(var(--lighter50)));
   background: linear-gradient(to bottom, var(--lighter10), var(--lighter50));
   color: var(--color-text-secondary);
