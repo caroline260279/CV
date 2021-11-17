@@ -17,6 +17,15 @@ body {
         "header header"
         "aside main"
         "footer footer";
+    @include xs {
+        grid-template-rows: 320px auto auto 150px;
+        grid-template-columns: 1fr;
+        grid-template-areas:
+            "header "
+            "main"
+            "aside"
+            "footer";
+    }
     @include md {
         grid-template-rows: 200px 1fr 200px;
         grid-template-columns: 300px 1fr;
@@ -42,16 +51,26 @@ header {
     grid-template-columns: 350px 1fr;
     grid-template-areas:
         "img name"
-        "img jobf";
+        "img job";
+    @include xs {
+        grid-template-rows: 100px 50px 170px;
+        grid-template-columns: 100vw;
+        grid-template-areas:
+            "name"
+            "job"
+            "img";
+        background: var(--lighter10);
+    }
     @include md {
         display: grid;
         grid-template-rows: 120px 80px;
         grid-template-columns: 300px 1fr;
         grid-template-areas:
             "img name"
-            "img jobf";
+            "img job";
     }
     .img {
+        grid-area: img;
         padding-top: 30px;
         width: 100%;
         height: 100%;
@@ -62,6 +81,10 @@ header {
         img {
             height: 200px;
             width: 200px;
+            @include xs {
+                height: 12rem;
+                width: 12rem;
+            }
             @include md {
                 height: 140px;
                 width: 140px;
@@ -74,15 +97,25 @@ header {
         padding-top: 20px;
         padding-bottom: 20px;
         height: 250px;
+
         @include md {
             height: 200px;
         }
         border-bottom: 1px solid rgba($color: #fb9850, $alpha: 0.7);
         box-shadow: 3px 2px 3px var(--lightersecondary);
+        @include xs {
+            border-bottom: none;
+            box-shadow: none;
+        }
         h1 {
+            grid-area: name;
             text-align: center;
             line-height: 150px;
             font-size: 6rem;
+            @include xs {
+                font-size: 4rem;
+                line-height: 4rem;
+            }
             @include md {
                 line-height: 100px;
                 font-size: 4rem;
@@ -93,8 +126,13 @@ header {
             margin-bottom: 0;
         }
         p {
+            grid-area: job;
             text-align: center;
             font-size: 2.5rem;
+            @include xs {
+                margin-top: 2rem;
+                font-size: 2rem;
+            }
             font-weight: 700;
             margin: 0;
             letter-spacing: 0.7rem;
@@ -106,6 +144,7 @@ header {
 aside {
     grid-area: aside;
     background: var(--lighter10);
+    padding-left: 3rem;
     p {
         margin: 0;
     }
@@ -120,9 +159,23 @@ aside {
         margin-bottom: 5rem;
         li {
             margin: 0 0 1rem 3rem;
+            a {
+                display: flex;
+                flex-flow: row nowrap;
+                transition: all 0.2s;
+                &:hover {
+                    font-size: 1.8rem;
+                    i {
+                        transform: scale(1.1);
+                    }
+                }
+            }
         }
     }
     .profil {
+        @include xs {
+            display: none;
+        }
         background: linear-gradient(
             to bottom,
             var(--lighter10),
@@ -158,6 +211,7 @@ aside {
     .info-1 {
         font-weight: 700;
     }
+
     .hobbies {
         li {
             display: flex;
@@ -205,6 +259,9 @@ main {
     grid-area: main;
     background: white;
     margin-top: 5rem;
+    @include xs {
+        margin-top: 0;
+    }
     section {
         margin-bottom: 8rem;
         h2 {
@@ -218,6 +275,43 @@ main {
         p {
             margin: 0 3rem 2rem 2rem;
             text-align: justify;
+            @include xs {
+                text-align: start;
+            }
+        }
+    }
+}
+
+.profil {
+    display: none;
+    @include xs {
+        margin-top: 0;
+        padding-top: 0;
+        display: block;
+        background: linear-gradient(
+            to bottom,
+            var(--lighter10),
+            var(--lighter50)
+        );
+        color: var(--color-text-secondary);
+        border-bottom: 1px solid rgba($color: #fb9850, $alpha: 0.7);
+        box-shadow: 3px 2px 3px var(--lightersecondary);
+        border-radius: 0 0 50% 0;
+        margin-bottom: 4rem;
+        padding: 2rem 0 5rem 0;
+        position: relative;
+        .background {
+            position: absolute;
+            top: 0;
+            left: 0;
+            display: inline-block;
+            height: calc(100% + 4rem);
+            width: 100%;
+            background: var(--lighter10);
+            z-index: -1;
+        }
+        h2 {
+            margin-top: 0;
         }
     }
 }
@@ -319,9 +413,15 @@ footer {
         var(--lighter50)
     );
     border-top: 1px solid var(--darker);
+    @include xs {
+        background: var(--lighter10);
+    }
     h2 {
         text-align: center;
         margin-top: 3rem;
+        @include xs {
+            font-size: 2.5rem;
+        }
     }
     .fas,
     .fab {
@@ -340,6 +440,9 @@ form {
         width: 50px;
         text-align: center;
         font-size: 3rem;
+        @include xs {
+            font-size: 2rem;
+        }
         color: var(--color-text);
         border: 1px solid var(--darker);
         background: var(--color-text-secondary);
@@ -349,12 +452,19 @@ form {
         color: var(--color-text);
         padding-left: 15px;
         width: 400px;
+        @include xs {
+            width: 100px;
+            font-size: 1.2rem;
+        }
         border: 1px solid var(--darker);
     }
     button {
         width: 50px;
         text-align: center;
         font-size: 3rem;
+        @include xs {
+            font-size: 2rem;
+        }
         border: 1px solid var(--darker);
         background: var(--color-text-secondary);
         margin: 0;

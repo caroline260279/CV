@@ -62,6 +62,16 @@ body {
       grid-template-areas: "header header" "aside main" "footer footer";
 }
 
+@media (max-width: 480px) {
+  .container {
+    -ms-grid-rows: 320px auto auto 150px;
+        grid-template-rows: 320px auto auto 150px;
+    -ms-grid-columns: 1fr;
+        grid-template-columns: 1fr;
+        grid-template-areas: "header " "main" "aside" "footer";
+  }
+}
+
 @media (min-width: 768px) and (max-width: 1400px) {
   .container {
     -ms-grid-rows: 200px 1fr 200px;
@@ -92,7 +102,18 @@ header {
       grid-template-rows: 150px 100px;
   -ms-grid-columns: 350px 1fr;
       grid-template-columns: 350px 1fr;
-      grid-template-areas: "img name" "img jobf";
+      grid-template-areas: "img name" "img job";
+}
+
+@media (max-width: 480px) {
+  header {
+    -ms-grid-rows: 100px 50px 170px;
+        grid-template-rows: 100px 50px 170px;
+    -ms-grid-columns: 100vw;
+        grid-template-columns: 100vw;
+        grid-template-areas: "name" "job" "img";
+    background: var(--lighter10);
+  }
 }
 
 @media (min-width: 768px) and (max-width: 1400px) {
@@ -103,11 +124,12 @@ header {
         grid-template-rows: 120px 80px;
     -ms-grid-columns: 300px 1fr;
         grid-template-columns: 300px 1fr;
-        grid-template-areas: "img name" "img jobf";
+        grid-template-areas: "img name" "img job";
   }
 }
 
 header .img {
+  grid-area: img;
   padding-top: 30px;
   width: 100%;
   height: 100%;
@@ -134,6 +156,13 @@ header .img img {
   border-radius: 50%;
 }
 
+@media (max-width: 480px) {
+  header .img img {
+    height: 12rem;
+    width: 12rem;
+  }
+}
+
 @media (min-width: 768px) and (max-width: 1400px) {
   header .img img {
     height: 140px;
@@ -156,13 +185,31 @@ header .header {
   }
 }
 
+@media (max-width: 480px) {
+  header .header {
+    border-bottom: none;
+    -webkit-box-shadow: none;
+            box-shadow: none;
+  }
+}
+
 header .header h1 {
+  -ms-grid-row: 1;
+  -ms-grid-column: 2;
+  grid-area: name;
   text-align: center;
   line-height: 150px;
   font-size: 6rem;
   font-weight: 400;
   letter-spacing: 2rem;
   margin-bottom: 0;
+}
+
+@media (max-width: 480px) {
+  header .header h1 {
+    font-size: 4rem;
+    line-height: 4rem;
+  }
 }
 
 @media (min-width: 768px) and (max-width: 1400px) {
@@ -174,6 +221,9 @@ header .header h1 {
 }
 
 header .header p {
+  -ms-grid-row: 2;
+  -ms-grid-column: 2;
+  grid-area: job;
   text-align: center;
   font-size: 2.5rem;
   font-weight: 700;
@@ -181,11 +231,19 @@ header .header p {
   letter-spacing: 0.7rem;
 }
 
+@media (max-width: 480px) {
+  header .header p {
+    margin-top: 2rem;
+    font-size: 2rem;
+  }
+}
+
 aside {
   -ms-grid-row: 2;
   -ms-grid-column: 1;
   grid-area: aside;
   background: var(--lighter10);
+  padding-left: 3rem;
 }
 
 aside p {
@@ -209,6 +267,27 @@ aside ul li {
   margin: 0 0 1rem 3rem;
 }
 
+aside ul li a {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-flow: row nowrap;
+          flex-flow: row nowrap;
+  -webkit-transition: all 0.2s;
+  transition: all 0.2s;
+}
+
+aside ul li a:hover {
+  font-size: 1.8rem;
+}
+
+aside ul li a:hover i {
+  -webkit-transform: scale(1.1);
+          transform: scale(1.1);
+}
+
 aside .profil {
   background: -webkit-gradient(linear, left top, left bottom, from(var(--lighter10)), to(var(--lighter50)));
   background: linear-gradient(to bottom, var(--lighter10), var(--lighter50));
@@ -220,6 +299,12 @@ aside .profil {
   margin-bottom: 4rem;
   padding: 2rem 0 5rem 0;
   position: relative;
+}
+
+@media (max-width: 480px) {
+  aside .profil {
+    display: none;
+  }
 }
 
 aside .profil .background {
@@ -314,6 +399,12 @@ main {
   margin-top: 5rem;
 }
 
+@media (max-width: 480px) {
+  main {
+    margin-top: 0;
+  }
+}
+
 main section {
   margin-bottom: 8rem;
 }
@@ -331,6 +422,47 @@ main section h4 {
 main section p {
   margin: 0 3rem 2rem 2rem;
   text-align: justify;
+}
+
+@media (max-width: 480px) {
+  main section p {
+    text-align: start;
+  }
+}
+
+.profil {
+  display: none;
+}
+
+@media (max-width: 480px) {
+  .profil {
+    margin-top: 0;
+    padding-top: 0;
+    display: block;
+    background: -webkit-gradient(linear, left top, left bottom, from(var(--lighter10)), to(var(--lighter50)));
+    background: linear-gradient(to bottom, var(--lighter10), var(--lighter50));
+    color: var(--color-text-secondary);
+    border-bottom: 1px solid rgba(251, 152, 80, 0.7);
+    -webkit-box-shadow: 3px 2px 3px var(--lightersecondary);
+            box-shadow: 3px 2px 3px var(--lightersecondary);
+    border-radius: 0 0 50% 0;
+    margin-bottom: 4rem;
+    padding: 2rem 0 5rem 0;
+    position: relative;
+  }
+  .profil .background {
+    position: absolute;
+    top: 0;
+    left: 0;
+    display: inline-block;
+    height: calc(100% + 4rem);
+    width: 100%;
+    background: var(--lighter10);
+    z-index: -1;
+  }
+  .profil h2 {
+    margin-top: 0;
+  }
 }
 
 .formation {
@@ -469,9 +601,21 @@ footer {
   border-top: 1px solid var(--darker);
 }
 
+@media (max-width: 480px) {
+  footer {
+    background: var(--lighter10);
+  }
+}
+
 footer h2 {
   text-align: center;
   margin-top: 3rem;
+}
+
+@media (max-width: 480px) {
+  footer h2 {
+    font-size: 2.5rem;
+  }
 }
 
 footer .fas,
@@ -505,12 +649,25 @@ form label {
   background: var(--color-text-secondary);
 }
 
+@media (max-width: 480px) {
+  form label {
+    font-size: 2rem;
+  }
+}
+
 form input {
   font-size: 2rem;
   color: var(--color-text);
   padding-left: 15px;
   width: 400px;
   border: 1px solid var(--darker);
+}
+
+@media (max-width: 480px) {
+  form input {
+    width: 100px;
+    font-size: 1.2rem;
+  }
 }
 
 form button {
@@ -520,5 +677,11 @@ form button {
   border: 1px solid var(--darker);
   background: var(--color-text-secondary);
   margin: 0;
+}
+
+@media (max-width: 480px) {
+  form button {
+    font-size: 2rem;
+  }
 }
 /*# sourceMappingURL=style.css.map */
